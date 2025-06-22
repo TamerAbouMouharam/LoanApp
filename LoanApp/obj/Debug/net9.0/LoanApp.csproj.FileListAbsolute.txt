@@ -1,0 +1,12 @@
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\bin\Debug\net9.0\LoanApp.deps.json
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\bin\Debug\net9.0\LoanApp.dll
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\bin\Debug\net9.0\LoanApp.pdb
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\obj\Debug\net9.0\LoanApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\obj\Debug\net9.0\LoanApp.AssemblyInfoInputs.cache
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\obj\Debug\net9.0\LoanApp.AssemblyInfo.cs
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\obj\Debug\net9.0\LoanApp.csproj.CoreCompileInputs.cache
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\obj\Debug\net9.0\LoanApp.sourcelink.json
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\obj\Debug\net9.0\LoanApp.dll
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\obj\Debug\net9.0\refint\LoanApp.dll
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\obj\Debug\net9.0\LoanApp.pdb
+C:\Users\Tamer\Desktop\LoanApp\LoanApp\obj\Debug\net9.0\ref\LoanApp.dll
