@@ -1,117 +1,117 @@
 ﻿namespace LoanApp.Tests;
 
-public class UnitTest1
+public class LoanEvaluatorTests
 {
     [Fact]
     public void CheckDependents_NoDependents_ReturnsEligible()
     {
-        //Arrange
+        // Arrange
         int dependents = 0;
 
-        //Act
+        // Act
         string result = new LoanEvaluator().CheckDependents(dependents);
 
-        //Assert
+        // Assert
         Assert.Equal("Eligible", result);
     }
 
     [Fact]
     public void CheckDependents_LessThanTwoDependents_ReturnsReviewManually()
     {
-        //Arrange
+        // Arrange
         int dependents = 1;
 
-        //Act
+        // Act
         string result = new LoanEvaluator().CheckDependents(dependents);
 
-        //Assert
+        // Assert
         Assert.Equal("Review Manually", result);
     }
 
     [Fact]
     public void CheckDependents_MoreThanTwoDependents_ReturnsNotEligible()
     {
-        //Arrange
+        // Arrange
         int dependents = 3;
 
-        //Act
+        // Act
         string result = new LoanEvaluator().CheckDependents(dependents);
 
-        //Assert
+        // Assert
         Assert.Equal("Not Eligible", result);
     }
 
     [Fact]
     public void CheckOwningHouse_OwnsHouse_ReturnsReviewManually()
     {
-        //Arrange
+        // Arrange
         bool ownsHouse = true;
 
-        //Act
+        // Act
         string result = new LoanEvaluator().CheckOwningHouse(ownsHouse);
 
-        //Assert
+        // Assert
         Assert.Equal("Review Manually", result);
     }
 
     [Fact]
     public void CheckOwningHouse_NotOwnsHouse_ReturnsNotEligible()
     {
-        //Arrange
+        // Arrange
         bool ownsHouse = false;
 
-        //Act
+        // Act
         string result = new LoanEvaluator().CheckOwningHouse(ownsHouse);
 
-        //Assert
+        // Assert
         Assert.Equal("Not Eligible", result);
     }
 
     [Fact]
     public void CheckHavingJob_CreditScoreMoreThan700_CheckDependents()
     {
-        //Arrange
+        // Arrange
         int creditScore = 700;
         int dependents = 0;
         bool ownsHouse = false;
 
-        //Act
+        // Act
         LoanEvaluator evaluator = new LoanEvaluator();
         string result = evaluator.CheckHavingJob(creditScore, dependents, ownsHouse);
 
-        //Assert
+        // Assert
         Assert.Equal(evaluator.CheckDependents(dependents), result);
     }
 
     [Fact]
     public void CheckHavingJob_CreditScoreMoreThan600_CheckOwningHouse()
     {
-        //Arrange
+        // Arrange
         int creditScore = 650;
         int dependents = 0;
         bool ownsHouse = false;
 
-        //Act
+        // Act
         LoanEvaluator evaluator = new LoanEvaluator();
         string result = evaluator.CheckHavingJob(creditScore, dependents, ownsHouse);
 
-        //Assert
+        // Assert
         Assert.Equal(evaluator.CheckOwningHouse(ownsHouse), result);
     }
 
     [Fact]
     public void CheckHavingJob_CreditScoreLessThan600_ReturnsNotEligible()
     {
-        //Arrange
+        // Arrange
         int creditScore = 500;
         int dependents = 0;
         bool ownsHouse = false;
 
-        //Act
+        // Act
         LoanEvaluator evaluator = new LoanEvaluator();
         string result = evaluator.CheckHavingJob(creditScore, dependents, ownsHouse);
 
-        //Assert
+        // Assert
         Assert.Equal("Not Eligible", result);
     }
 
@@ -196,7 +196,7 @@ public class UnitTest1
         // Assert
         Assert.Equal("Not Eligible", result);
     }
-    
+
     [Fact]
     public void CheckIfNotHaveJob_DependentsExist_ReturnsNotEligible()
     {
@@ -211,5 +211,48 @@ public class UnitTest1
 
         // Assert
         Assert.Equal("Not Eligible", result);
+    }
+
+    [Fact]
+    public void GetLoanEligibility_IncomeLessThan2000_ReturnsNotEligible()
+    {
+        // Arrange
+        int income = 1000;
+
+        // Act
+        string result = new LoanEvaluator().GetLoanEligibility(income, default, default, default, default);
+
+        // Assert
+        Assert.Equal("Not Eligible", result);
+    }
+
+    [Fact]
+    public void GetLoanEligibility_HasJob_CheckHavingJob()
+    {
+        // Arrange
+        int income = 3000;
+        bool hasJob = true;
+
+        // Act
+        LoanEvaluator evaluator = new LoanEvaluator();
+        string result = evaluator.GetLoanEligibility(income, hasJob, default, default, default);
+
+        // Assert
+        Assert.Equal(evaluator.CheckHavingJob(default, default, default), result);
+    }
+    
+    [Fact]
+    public void GetLoanEligibility_IncomeMoreThan2000AndNotHasJob_CheckIfNotHaveJob()
+    {
+        // Arrange
+        int income = 3000;
+        bool hasJob = false;
+
+        // Act
+        LoanEvaluator evaluator = new LoanEvaluator();
+        string result = evaluator.GetLoanEligibility(income, hasJob, default, default, default);
+
+        // Assert
+        Assert.Equal(evaluator.CheckIfNotHaveJob(income, default, default, default), result);
     }
 }
